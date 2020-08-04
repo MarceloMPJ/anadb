@@ -79,6 +79,10 @@ func execComand(command string) metaCommandResult {
 }
 
 func prepareStatement(inputStatement string, statement *statement) prepareCommandResult {
+	if len(inputStatement) < 6 {
+		return prepareUnrecognizedStatement
+	}
+
 	if inputStatement[:6] == "insert" {
 		statement.statementType = statementInsert
 		return prepareSuccess
